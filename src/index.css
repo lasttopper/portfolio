@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #111113;
+  --color-paper: #fafafa;
+  --color-paper-dim: #f1f1f2;
+  --color-line: #e4e4e7;
+  --color-muted: #6b7280;
+
+  --color-accent-red: #ff3b30;
+  --color-accent-green: #22c55e;
+  --color-accent-blue: #3b82f6;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --shadow-solid: 0 1px 0 rgba(0, 0, 0, 0.04), 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-lift: 0 2px 0 rgba(0, 0, 0, 0.04), 0 18px 40px -18px rgba(0, 0, 0, 0.35);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-color: #0b0b0d;
+    color: #fafafa;
+  }
+
+  /* App shell — explicit backgrounds (not utilities) so theme switching
+     is guaranteed to win regardless of Tailwind class ordering. */
+  .app-root {
+    background-color: var(--color-paper);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  .dark .app-root {
+    background-color: #0b0b0d;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.22);
+    color: #0a0a0a;
+  }
+
+  .dark ::selection {
+    background: rgba(59, 130, 246, 0.4);
+    color: #ffffff;
+  }
+
+  /* Visible, consistent focus states for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  /* 3D solid-material surface */
+  .surface {
+    background: #ffffff;
+    border: 1px solid var(--color-line);
+    border-bottom-width: 2px;
+    box-shadow: var(--shadow-solid);
+  }
+
+  .dark .surface {
+    background: #141417;
+    border-color: #2a2a2e;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 6px 18px -6px rgba(0, 0, 0, 0.6);
+  }
+
+  .surface-dark {
+    background: #111113;
+    border: 1px solid #2a2a2d;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  }
+
+  .dark .surface-dark {
+    background: #17171a;
+    border-color: #2e2e33;
+  }
+
+  .surface-elevated {
+    background: #ffffff;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .dark .surface-elevated {
+    background: #141417;
+    border-color: #2a2a2e;
+  }
+
+  /* Subtle dotted/technical grid */
+  .dot-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(10, 10, 10, 0.08) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+
+  .dot-grid-dark {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.09) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* 3D cube helpers */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* ── Premium micro-interaction primitives ── */
+
+  /* Card lift: subtle raise + scale + shadow on hover */
+  .hover-lift {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.25s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -18px rgba(17, 17, 17, 0.28);
+  }
+
+  /* Consistent button interaction */
+  .btn-interact {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.25s ease, background-color 0.2s ease, border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+  .btn-interact:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-interact:active {
+    transform: scale(0.98);
+  }
+
+  /* Icon micro-motion on card hover */
+  .icon-motion {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .group:hover .icon-motion {
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  /* Form focus lift */
+  .input-focus {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+      transform 0.2s ease, background-color 0.2s ease;
+  }
+  .input-focus:focus {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    transform: translateY(-1px);
+  }
+}
+
+/* Respect reduced motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar — subtle */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c9cd;
+  border-radius: 8px;
+  border: 2px solid var(--color-paper);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8ad;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #3a3a3f;
+  border-color: #0b0b0d;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4a4a50;
+}

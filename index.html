@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>Vikash — Developer, Builder & Tech Explorer</title>
+    <meta name="description" content="Vikash is a developer, builder and tech explorer who enjoys building websites, applications, automation systems, and experimenting with Android, Linux and AI-powered tools." />
+    <meta name="author" content="Vikash" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://vikash.dev/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./logo.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vikash — Developer, Builder & Tech Explorer" />
+    <meta property="og:description" content="I build websites, applications and automation systems — experimenting with Android, Linux and AI-powered tools." />
+    <meta property="og:url" content="https://vikash.dev/" />
+    <meta property="og:image" content="https://lasttopper.github.io/portfolio/logo.png" />
+    <meta property="og:site_name" content="Vikash Portfolio" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vikash — Developer, Builder & Tech Explorer" />
+    <meta name="twitter:description" content="I build websites, applications and automation systems — experimenting with Android, Linux and AI-powered tools." />
+    <meta name="twitter:image" content="https://lasttopper.github.io/portfolio/logo.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Person schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vikash",
+        "jobTitle": "Developer & Tech Explorer",
+        "description": "Developer and builder exploring web development, app development, AI tools, automation, Android, and Linux.",
+        "knowsAbout": [
+          "Web Development",
+          "App Development",
+          "Artificial Intelligence",
+          "Automation",
+          "Linux",
+          "Android",
+          "Cybersecurity"
+        ],
+        "sameAs": [
+          "https://github.com/lasttopper",
+          "https://x.com/vikash_raj_777",
+          "https://www.instagram.com/code.withvikki"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      // Prevent flash of incorrect theme before React hydrates
+      (function () {
+        try {
+          var stored = localStorage.getItem("vikash-portfolio-theme");
+          var dark =
+            stored === "dark" ||
+            (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
